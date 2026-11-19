@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Maker — multi-panel poster covers</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Editor controls">
+    <h1>Vice Cover Maker</h1>
+    <p class="tag">Your photo + a caption, made into a multi-panel sunset poster. All offline.</p>
+
+    <div class="group">
+      <span class="label">1 · Photos</span>
+      <label class="file">Add photos <input id="photo" type="file" accept="image/*" multiple></label>
+      <div class="row">
+        <button id="sample-boulevard" type="button">Try boulevard</button>
+        <button id="sample-pier" type="button">Try pier</button>
+      </div>
+      <p class="hint">Or drag photos onto the preview. One photo can fill several panels.</p>
+      <div id="thumbs" class="thumbs" aria-label="Loaded photos"></div>
+    </div>
+
+    <div class="group">
+      <span class="label">2 · Layout</span>
+      <div class="row" id="layouts">
+        <button type="button" data-layout="grid" class="on">Vice Grid · 2×2</button>
+        <button type="button" data-layout="hero">Hero · 1 big + 2</button>
+        <button type="button" data-layout="strip">Strip · 3 tall</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="label">3 · Selected panel</span>
+      <p class="hint" id="panel-info">Click a panel in the preview to select it, then drag it to pan.</p>
+      <label>Zoom <input id="zoom" type="range" min="1" max="3" step="0.05" value="1.2"></label>
+      <label class="file">Change this panel's photo <input id="panel-photo" type="file" accept="image/*"></label>
+    </div>
+
+    <div class="group">
+      <span class="label">4 · Colour grade</span>
+      <div class="row" id="grades">
+        <button type="button" data-grade="sunset" class="on">Vice Sunset</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="dusk">Palm Dusk</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="label">5 · Caption</span>
+      <label>Text <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
+      <div class="row">
+        <button type="button" id="pos-top">Top</button>
+        <button type="button" id="pos-bottom" class="on">Bottom</button>
+      </div>
+      <div class="row" id="colors" aria-label="Caption colour">
+        <button type="button" data-color="#ffffff" class="sw on" style="background:#fff" aria-label="white"></button>
+        <button type="button" data-color="#ffd166" class="sw" style="background:#ffd166" aria-label="gold"></button>
+        <button type="button" data-color="#ff5ea8" class="sw" style="background:#ff5ea8" aria-label="pink"></button>
+        <button type="button" data-color="#7ef0ff" class="sw" style="background:#7ef0ff" aria-label="cyan"></button>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="label">6 · Export</span>
+      <label>Size
+        <select id="size">
+          <option value="1080x1080">1080 × 1080 (square)</option>
+          <option value="1080x1350">1080 × 1350 (portrait)</option>
+          <option value="1920x1080">1920 × 1080 (wide)</option>
+        </select>
+      </label>
+      <button id="export" type="button" class="big">Export PNG</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+  <section class="preview" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
